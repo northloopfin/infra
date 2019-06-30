@@ -18,3 +18,8 @@ module "root_state" {
   source      = "./.root_state"
   aws_region  = "${var.aws_region}"
 }
+
+module "app" {
+  source      = "./app/preprod/us-east-2/default"
+  aws_region  = "${var.aws_region}"
+}

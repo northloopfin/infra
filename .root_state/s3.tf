@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "terraform_root_state_bucket" {
-  bucket = "s3.terraform.root-state.${var.aws_region}"
+  bucket = "s3.terraform.root-state.${var.aws_region}.${terraform.workspace}"
   acl    = "private"
   policy = "${var.bucket_policy}"
 
@@ -9,7 +9,7 @@ resource "aws_s3_bucket" "terraform_root_state_bucket" {
 
   tags = {
     Name  = "root-state"
-    env   = "prod"
+    env   = "${terraform.workspace}"
     Stack = "terraform"
   }
 }
