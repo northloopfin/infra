@@ -11,3 +11,12 @@ module "vpc" {
   aws_region          = "${var.aws_region}"
   cidr                = "${var.network.cidr_vpc}"
 }
+
+module "security_groups" {
+  source       = "../../../global/security_groups"
+  env          = "${terraform.workspace}"
+  client_name  = "${var.general.client_name}"
+  aws_region   = "${var.aws_region}"
+  vpc_id       = "${module.vpc.vpc_id}"
+}
+
