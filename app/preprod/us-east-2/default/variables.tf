@@ -43,3 +43,20 @@ variable "rds" {
   }
 }
 
+variable "alb" {
+  description = "ALB "
+
+  default = {
+    alb_name                  = "northloop"
+    alb_target_group_port     = "80"                                             #Port on which the instances will received the traffic
+    alb_target_group_protocol = "HTTP"                                           #Protocol associate to the alb target group protocol
+    normal_listeners_port     = "80"                                             #ALB listener(s) port. You can add multiple NO secure port listeners.
+    normal_listeners_protocol = "http"
+//    secure_listeners_port     = "443"                                            #ALB listener(s) port. You can add multiple secure port listeners. 
+//    secure_listeners_protocol = "HTTPS"
+//    alb_ssl_certificate       = "arn:aws:acm:ap-northeast-1:403437318421:certificate/0b79933b-d05d-4e03-b4d4-26f6599be7da"
+    health_check_path         = "/favicon.ico"
+//    ssl_policy		      = "ELBSecurityPolicy-TLS-1-1-2017-01"
+  }
+}
+
